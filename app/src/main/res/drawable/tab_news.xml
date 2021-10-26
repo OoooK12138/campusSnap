@@ -4,6 +4,6 @@
 <!--tab被点击或未被点击时两种图片-->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/news"/>
     <item android:drawable="@drawable/news_active" android:state_selected="true"/>
+    <item android:drawable="@drawable/news"/>
 </selector>

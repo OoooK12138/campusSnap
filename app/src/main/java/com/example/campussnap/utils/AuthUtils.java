@@ -16,10 +16,23 @@ public class AuthUtils {
         return remember;
     }
 
+    public static boolean getIsAuto(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(key,Activity.MODE_PRIVATE);
+        boolean auto = sharedPreferences.getBoolean("auto", false);
+        return auto;
+    }
+
     public static void setRemember(Context context,Boolean remember){
         SharedPreferences sharedPreferences = context.getSharedPreferences(key,Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putBoolean("remember",remember);
+        edit.commit();
+    }
+
+    public static void setAuto(Context context,Boolean auto){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(key,Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("auto",auto);
         edit.commit();
     }
 
@@ -36,6 +49,7 @@ public class AuthUtils {
         User user = new User();
         user.setUsername(sharedPreferences.getString("username",null));
         user.setPassword(sharedPreferences.getString("password",null));
+
         if (user.getUsername()==null||user.getPassword()==null){
             return null;
         }

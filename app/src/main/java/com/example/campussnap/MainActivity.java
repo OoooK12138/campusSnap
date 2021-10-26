@@ -14,8 +14,6 @@ import com.example.campussnap.entity.User;
 import com.example.campussnap.utils.AuthUtils;
 
 public class MainActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +27,5 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
         }
-        setContentView(R.layout.activity_main);
     }
 }

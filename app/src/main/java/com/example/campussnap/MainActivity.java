@@ -1,5 +1,7 @@
 package com.example.campussnap;
 
+// 登陆后进入的程序界面
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -52,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initPager() {
         viewPager = findViewById(R.id.viewpager);
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(BlankFragment.newInstance("新闻"));
-        fragments.add(BlankFragment.newInstance("主页"));
-        fragments.add(BlankFragment.newInstance("随手拍"));
-        fragments.add(BlankFragment.newInstance("我的"));
+        fragments.add(new NewsFragment());
+        fragments.add(new HomeFragment());
+        fragments.add(new CameraFragment());
+        fragments.add(new UserFragment());
         MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(pagerAdapter);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

@@ -3,13 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/drawable/btn_login.xml" value="0.1421875" />
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/layout/activity_login.xml" value="0.536" />
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/layout/activity_main.xml" value="0.12604166666666666" />
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/layout/activity_register.xml" value="0.12604166666666666" />
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/layout/list_item.xml" value="0.12604166666666666" />
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/11075/AndroidStudioProjects/campusSnap/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/drawable/tab_camera.xml" value="0.15" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/drawable/tab_home.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/drawable/tab_news.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/drawable/tab_user.xml" value="1.0285714285714285" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/activity_list.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/activity_login.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/camera_fragment.xml" value="0.1296875" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/fragment_blank.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/fragment_camera.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/fragment_home.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/fragment_news.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/fragment_user.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/home_fragment.xml" value="0.1296875" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/list_item.xml" value="0.1296875" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/news_fragment.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/tabbar_fragment.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/tabbar_layout.xml" value="0.4" />
+        <entry key="..\:/Users/86151/Desktop/campusSnap-master/app/src/main/res/layout/user_fragment.xml" value="0.1296875" />
         <entry key="..\:/Users/86182/Desktop/campusSnap-master/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/86182/Desktop/campusSnap-master/app/src/main/res/drawable/bg_edit_view.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/86182/Desktop/campusSnap-master/app/src/main/res/drawable/btn_login.xml" value="0.26979166666666665" />

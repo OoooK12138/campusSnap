@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean isAuto = AuthUtils.getIsAuto(this);
 
         if (isAuto){
-            Intent intent = new Intent(LoginActivity.this,ListActivity.class);
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
             startActivity(intent);
         }
 
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
                 }
 
-                Intent intent = new Intent(LoginActivity.this, ListActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

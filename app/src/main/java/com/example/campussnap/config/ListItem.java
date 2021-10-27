@@ -18,7 +18,7 @@ public class ListItem {
         return date;
     }
 
-    public String getImgUrl() {
+    public Integer getImgUrl() {
         return imgUrl;
     }
 
@@ -34,16 +34,16 @@ public class ListItem {
         this.date = date;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public void setImgUrl(Integer imgUrl) {
         this.imgUrl = imgUrl;
     }
 
     private String title;
     private String content;
     private String date;
-    private String imgUrl;
+    private Integer imgUrl;
 
-    public ListItem(String title, String content, String date, String imgUrl) {
+    public ListItem(String title, String content, String date, Integer imgUrl) {
         setTitle(title);
         setContent(content);
         setDate(date);

@@ -14,8 +14,8 @@
         android:textColor="#FFFFFF"
         android:background="#FF8F03"
         android:gravity="center"/>
-    <ListView
-        android:id="@+id/lv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lv_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

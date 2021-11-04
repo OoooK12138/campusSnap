@@ -2,14 +2,98 @@
 
 <!--随手拍界面-->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/up_load"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我是随手拍"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:text="上传"
+        android:textColor="@color/white"
+        android:background="@color/black"
         />
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入标题"
+        />
+
+    <EditText
+        android:id="@+id/problem_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入问题描述"
+        android:layout_marginTop="40dp"
+        />
+    <ImageView
+        android:id="@+id/photo_item"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:background="@drawable/ic_add"
+        />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problem_description"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <RadioButton
+            android:id="@+id/safe_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="安全隐患"
+            />
+
+        <RadioButton
+            android:id="@+id/sanitation_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:text="卫生问题" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="秩序问题"
+            android:layout_marginLeft="70dp"
+            android:id="@+id/rule_radiobutton"
+            />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/importance_group"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+
+        <RadioButton
+            android:id="@+id/importance_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重要"
+            android:layout_marginLeft="60dp"
+            />
+        <RadioButton
+            android:id="@+id/common_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一般"
+            android:layout_marginLeft="170dp"
+            />
+    </RadioGroup>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

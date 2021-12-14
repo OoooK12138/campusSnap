@@ -5,7 +5,7 @@ import lombok.Data;
 // 新闻列表item的数据结构
 
 @Data
-public class NewsVo {
+public class ListItem {
     public String getTitle() {
         return title;
     }
@@ -43,7 +43,7 @@ public class NewsVo {
     private String date;
     private Integer imgUrl;
 
-    public NewsVo(String title, String content, String date, Integer imgUrl) {
+    public ListItem(String title, String content, String date, Integer imgUrl) {
         setTitle(title);
         setContent(content);
         setDate(date);

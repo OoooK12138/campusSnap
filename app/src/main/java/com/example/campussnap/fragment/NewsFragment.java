@@ -3,7 +3,6 @@ package com.example.campussnap.fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
-import com.bumptech.glide.Glide;
 import com.example.campussnap.R;
 import com.example.campussnap.bean.NewsBean;
 import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
-import com.example.campussnap.config.NewsVo;
 import com.example.campussnap.utils.HttpUtils;
 import com.example.campussnap.utils.LogUtils;
 
@@ -30,7 +27,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

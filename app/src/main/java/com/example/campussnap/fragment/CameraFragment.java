@@ -16,11 +16,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.campussnap.R;
 
+import java.io.File;
+import java.net.URL;
+
 
 public class CameraFragment extends Fragment implements View.OnClickListener {
 
     private ImageView photoView;
     private Button upLoadBtn;
+    private Uri imageURL;
 
     private String photoPath;
 
@@ -36,13 +40,14 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         photoView = (ImageView) view.findViewById(R.id.photo_item);
         photoView.setOnClickListener(this);
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 2) {
             // 从相册返回的数据
             if (data != null) {
                 // 得到图片的全路径
-                Uri uri = data.getData();
-                photoView.setImageURI(uri);
+                imageURL = data.getData();
+                photoView.setImageURI(imageURL);
             }
         }
     }

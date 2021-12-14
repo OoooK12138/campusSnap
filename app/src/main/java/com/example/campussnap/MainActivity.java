@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.campussnap.fragment.CameraFragment;
-import com.example.campussnap.fragment.HomeFragment;
+//import com.example.campussnap.fragment.HomeFragment;
 import com.example.campussnap.fragment.NewsFragment;
 import com.example.campussnap.fragment.UserFragment;
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager = findViewById(R.id.viewpager);
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new NewsFragment());
-        fragments.add(new HomeFragment());
+//        fragments.add(new HomeFragment());
         fragments.add(new CameraFragment());
         fragments.add(new UserFragment());
         MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);

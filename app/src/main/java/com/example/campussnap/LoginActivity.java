@@ -1,6 +1,9 @@
 package com.example.campussnap;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -12,12 +15,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
 import com.example.campussnap.entity.User;
 import com.example.campussnap.utils.AuthUtils;
 import com.example.campussnap.utils.HttpUtils;
 import com.example.campussnap.utils.LogUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.net.URLEncoder;
 
 public class LoginActivity extends AppCompatActivity {
@@ -80,17 +88,39 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 LogUtils.debug("登陆" + result.toString());
 
-//                if (result.isSuccess()){
-//                    AppContext.makeToast("登入成功");
-//                    if (rememberPwdBox.isChecked()){
-//                        AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
-//                    }
-//
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                    return;
+                if (result.isSuccess()){
+                    AppContext.makeToast("登入成功");
+                    if (rememberPwdBox.isChecked()){
+                        AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
+                    }
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                AppContext.makeToast("登入失败");
+
+
+                //图片上传测试
+//                Resources res = getResources();
+//                BitmapDrawable d = (BitmapDrawable) res.getDrawable(R.drawable.fzu4);
+//                Bitmap img = d.getBitmap();
+//                String fn = "image_test.png";
+//                String path = getFilesDir() + File.separator + fn;
+//                try{ OutputStream os = new FileOutputStream(path);
+//                    img.compress(Bitmap.CompressFormat.PNG, 100, os);
+//                    os.close();
+//                } catch(Exception e){
+//                    e.printStackTrace();
 //                }
-//                AppContext.makeToast("登入失败");
+//                File file = new File(path);
+//
+//                Result result1 = new Result();
+//                try {
+//                    result1= HttpUtils.uploadFile(file, "http://49.235.134.191:8080/file/image/upload");
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//                LogUtils.debug(result1.toString());
 
             }
         });

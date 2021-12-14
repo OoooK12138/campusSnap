@@ -2,18 +2,19 @@ package com.example.campussnap;
 
 // 登陆后进入的程序界面
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import com.example.campussnap.fragment.CameraFragment;
+import com.example.campussnap.fragment.HomeFragment;
+import com.example.campussnap.fragment.NewsFragment;
+import com.example.campussnap.fragment.UserFragment;
 
 import java.util.ArrayList;
 

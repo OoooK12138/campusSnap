@@ -14,7 +14,7 @@
         android:background="@drawable/fzu" />
 
     <EditText
-        android:id="@+id/et_account"
+        android:id="@+id/re_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -33,7 +33,7 @@
 
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/re_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -48,7 +48,7 @@
         android:paddingBottom="3dp" />
 
     <EditText
-        android:id="@+id/password_again"
+        android:id="@+id/re_rePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="485dp"

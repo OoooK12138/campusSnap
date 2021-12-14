@@ -12,8 +12,14 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.campussnap.common.AppContext;
+import com.example.campussnap.common.Result;
 import com.example.campussnap.entity.User;
 import com.example.campussnap.utils.AuthUtils;
+import com.example.campussnap.utils.HttpUtils;
+import com.example.campussnap.utils.LogUtils;
+
+import java.net.URLEncoder;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etAccount;
@@ -61,12 +67,26 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rememberPwdBox.isChecked()){
-                    AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
+
+                Result result = new Result();
+                try {
+                    result = HttpUtils.GetRequest("/user/login?" + "account=" + URLEncoder.encode(etAccount.getText().toString()) + "&password=" + URLEncoder.encode(etPassword.getText().toString()));
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+                if (result.isSuccess()){
+                    AppContext.makeToast("登入成功");
+                    if (rememberPwdBox.isChecked()){
+                        AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
+                    }
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                AppContext.makeToast("登入失败");
+
             }
         });
 

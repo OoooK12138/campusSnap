@@ -1,5 +1,8 @@
 package com.example.campussnap.utils;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.StrictMode;
 
 import com.alibaba.fastjson.JSONObject;
@@ -12,15 +15,21 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 
 public class HttpUtils {
     private static final String URL = "http://49.235.134.191:8080";
     private static final int TIMEOUT_IN_MILLIONS = 5000;
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    @SuppressLint("NewApi")
+
+
+
     public static Result GetRequest(String method) throws Exception {
         URL url = new URL(URL + method);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy((policy));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(TIMEOUT_IN_MILLIONS);
@@ -35,7 +44,7 @@ public class HttpUtils {
             while ((input = reader.readLine()) != null) {
                 stringBuffer.append(input);
             }
-            LogUtils.debug(stringBuffer.toString());
+
             return JSONObject.parseObject(stringBuffer.toString(),Result.class);
         }else {
             throw new RuntimeException("请求错误" + "状态码:" + responseCode);
@@ -44,6 +53,8 @@ public class HttpUtils {
 
     public static Result PostRequest(String method, List<Param> params) throws Exception {
         URL url = new URL(URL + method);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy((policy));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setConnectTimeout(TIMEOUT_IN_MILLIONS);
@@ -73,6 +84,8 @@ public class HttpUtils {
 
 
     public static String getParams(List<Param> params){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy((policy));
         StringBuffer data = new StringBuffer();
         for (Param param:params){
             data.append(param.getParam() + "&");

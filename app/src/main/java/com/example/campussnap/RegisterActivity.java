@@ -1,21 +1,17 @@
 package com.example.campussnap;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.campussnap.common.AppContext;
-import com.example.campussnap.common.Param;
 import com.example.campussnap.common.Result;
 import com.example.campussnap.utils.HttpUtils;
 import com.example.campussnap.utils.LogUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText account;
@@ -47,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                LogUtils.debug(result.toString());
                 if (result.isSuccess()){
                     AppContext.makeToast("注册成功");
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);

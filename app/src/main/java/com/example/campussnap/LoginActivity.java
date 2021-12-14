@@ -1,10 +1,8 @@
 package com.example.campussnap;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,7 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.campussnap.common.AppContext;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.campussnap.common.Result;
 import com.example.campussnap.entity.User;
 import com.example.campussnap.utils.AuthUtils;
@@ -64,28 +63,34 @@ public class LoginActivity extends AppCompatActivity {
         /**
          * 点击登录
          */
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Result result = new Result();
+
+
+
                 try {
                     result = HttpUtils.GetRequest("/user/login?" + "account=" + URLEncoder.encode(etAccount.getText().toString()) + "&password=" + URLEncoder.encode(etPassword.getText().toString()));
                 }catch (Exception e){
+
                     e.printStackTrace();
                 }
+                LogUtils.debug("登陆" + result.toString());
 
-                if (result.isSuccess()){
-                    AppContext.makeToast("登入成功");
-                    if (rememberPwdBox.isChecked()){
-                        AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
-                    }
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-                AppContext.makeToast("登入失败");
+//                if (result.isSuccess()){
+//                    AppContext.makeToast("登入成功");
+//                    if (rememberPwdBox.isChecked()){
+//                        AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
+//                    }
+//
+//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    return;
+//                }
+//                AppContext.makeToast("登入失败");
 
             }
         });

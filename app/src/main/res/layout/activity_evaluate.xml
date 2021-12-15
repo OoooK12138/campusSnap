@@ -24,6 +24,7 @@
             android:rating="1.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:theme="@style/RatingBar"
             android:layout_gravity="center">
         </RatingBar>
     </LinearLayout>
@@ -44,6 +45,7 @@
             android:rating="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:theme="@style/RatingBar"
             android:layout_gravity="center">
         </RatingBar>
     </LinearLayout>

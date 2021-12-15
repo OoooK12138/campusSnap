@@ -83,7 +83,7 @@ public class HistoryActivity extends AppCompatActivity {
 //                   System.out.println("评价");
                     Intent intent1 = new Intent(HistoryActivity.this,EvaluateActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("pos", String.valueOf(this.position));
+                    bundle.putInt("id", list.get(position).getId());
                     intent1.putExtras(bundle);
                     startActivity(intent1);
                 }

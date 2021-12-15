@@ -10,4 +10,10 @@
         <item name="android:windowTitleBackgroundStyle">@style/CustomizedWindowTitleBackground</item>
     </style>
 
+    <!--RatingBar颜色-->
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#3c3f41</item>
+        <item name="colorControlActivated">@color/btn_color</item>
+    </style>
+
 </resources>

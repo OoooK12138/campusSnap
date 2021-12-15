@@ -1,8 +1,8 @@
 package com.example.campussnap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.campussnap.bean.CommentBean;
+import com.example.campussnap.common.Result;
 
 //发表评价界面
 public class EvaluateActivity extends Activity implements View.OnClickListener{
@@ -21,6 +22,8 @@ public class EvaluateActivity extends Activity implements View.OnClickListener{
     private EditText comment_input;
     private RatingBar result_ratingBar;
     private RatingBar speed_ratingBar;
+
+    private Integer feedBackId;
 
     private CommentBean postData = new CommentBean();
 
@@ -36,6 +39,11 @@ public class EvaluateActivity extends Activity implements View.OnClickListener{
 
     // 初始化控件
     private void init() {
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        feedBackId = bundle.getInt("id");
+        postData.setFeedBackId(feedBackId);
+
         back_btn = findViewById(R.id.back_btn);
         back_btn.setOnClickListener(this);
         comment_btn = findViewById(R.id.comment_btn);
@@ -56,8 +64,11 @@ public class EvaluateActivity extends Activity implements View.OnClickListener{
                 postData.setRatingSpeed((int)rating);
             }
         });
+
+
     }
 
+    // 发表评论
     public void postComment(){
         String comment = comment_input.getText().toString();
         if(comment.equals("")){
@@ -65,7 +76,14 @@ public class EvaluateActivity extends Activity implements View.OnClickListener{
             return;
         }
         postData.setCommend(comment);
-        Log.v("mybug", postData.toString());
+
+        Result result = new Result();
+        try {
+            // TODO: 2021/12/15 网络请求 
+           // result = HttpUtils.PostRequest("/feedback/evaluate" );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -73,6 +91,7 @@ public class EvaluateActivity extends Activity implements View.OnClickListener{
         int position = view.getId();
         switch (position) {
             case R.id.back_btn:         // 返回
+                this.finish();
                 break;
             case R.id.comment_btn:      // 发表评论
                 postComment();

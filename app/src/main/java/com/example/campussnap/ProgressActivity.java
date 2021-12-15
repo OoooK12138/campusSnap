@@ -54,6 +54,10 @@ public class ProgressActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+            //设置开始条不显示
+            if (position==0){
+                holder.startLine.setVisibility(View.INVISIBLE);
+            }
             holder.status.setText(feedBackBeanList.get(position).getDesc());
             holder.date.setText(dateFormat.format(feedBackBeanList.get(position).getTime()));
         }
@@ -68,9 +72,11 @@ public class ProgressActivity extends AppCompatActivity {
 
             private TextView status;
             private TextView date;
+            private TextView startLine;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
+                startLine = itemView.findViewById(R.id.tvTopLine);
                 status = itemView.findViewById(R.id.tvAcceptStation);
                 date = itemView.findViewById(R.id.tvAcceptTime);
             }
@@ -84,9 +90,10 @@ public class ProgressActivity extends AppCompatActivity {
         recyclerView.setAdapter (progressAdapter);
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        Integer feedBackId = bundle.getInt("pos");
+        feedBackId = bundle.getInt("pos");
+        LogUtils.debug(feedBackId.toString());
 
-
+        feedBackId = 20;
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.CHINA);
         Result result = new Result();
         try {
@@ -97,10 +104,8 @@ public class ProgressActivity extends AppCompatActivity {
 
         if (result.isSuccess()){
             feedBackBeanList = JSONArray.parseArray(result.getData().toString(),FeedBackBean.class);
+            LogUtils.debug(feedBackBeanList.toString());
         }
-
-        LogUtils.debug(feedBackBeanList.toString());
-
     }
 
 }

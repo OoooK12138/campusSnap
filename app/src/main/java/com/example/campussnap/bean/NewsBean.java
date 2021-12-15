@@ -17,4 +17,5 @@ public class NewsBean {
     private String desc;
     private String publishAccount;
     private Date publishTime;
+
 }

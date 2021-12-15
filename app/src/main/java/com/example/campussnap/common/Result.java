@@ -14,7 +14,7 @@ public class Result {
     private Object data; //返回数据
 
     public boolean isSuccess(){
-        if (code==200){
+        if ("SUCCESS".equals(message)){
             return true;
         }
         return false;

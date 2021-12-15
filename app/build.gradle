@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation fileTree(dir: 'D:\\Download\\BaiduLBS_AndroidSDK_Lib', include: ['*.aar', '*.jar'], exclude: [])
     implementation files('libs\\BaiduLBS_Android.jar')
+    implementation files('libs\\BaiduLBS_Android.jar')
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.fastjson.JSONObject;
+import com.example.campussnap.bean.FeedBackBean;
+import com.example.campussnap.bean.HistoryItem;
 import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
 import com.example.campussnap.entity.User;
@@ -27,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etAccount;
@@ -88,14 +92,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //判断账号密码不能为空
+                if (etAccount.getText().toString().equals("")||etPassword.getText().toString().equals("")){
+                    AppContext.makeToast("账号密码不能为空");
+                    return;
+                }
+
                 Result result = new Result();
-
                 User user = new User(etAccount.getText().toString(),etPassword.getText().toString());
-
                 try {
                     result = userLogin(user);
                 }catch (Exception e){
-
                     e.printStackTrace();
                 }
                 if (result.isSuccess()){
@@ -107,38 +114,9 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-//                    Intent intent = new Intent(LoginActivity.this,ProgressActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putInt("pos",20);
-//                    intent.putExtras(bundle);
-//                    startActivity(intent);
                     return;
                 }
                 AppContext.makeToast("登入失败");
-
-
-                //图片上传测试
-//                Resources res = getResources();
-//                BitmapDrawable d = (BitmapDrawable) res.getDrawable(R.drawable.fzu4);
-//                Bitmap img = d.getBitmap();
-//                String fn = "image_test.png";
-//                String path = getFilesDir() + File.separator + fn;
-//                try{ OutputStream os = new FileOutputStream(path);
-//                    img.compress(Bitmap.CompressFormat.PNG, 100, os);
-//                    os.close();
-//                } catch(Exception e){
-//                    e.printStackTrace();
-//                }
-//                File file = new File(path);
-//
-//                Result result1 = new Result();
-//                try {
-//                    result1= HttpUtils.uploadFile(file, "http://49.235.134.191:8080/file/image/upload");
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
-//                LogUtils.debug(result1.toString());
-
             }
         });
 

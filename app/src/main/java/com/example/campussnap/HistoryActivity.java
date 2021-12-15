@@ -35,6 +35,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Locale;
 
 public class HistoryActivity extends AppCompatActivity {
@@ -204,9 +205,19 @@ public class HistoryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         LogUtils.debug(result.toString());
-
-        list = (ArrayList<HistoryItem>) JSONArray.parseArray(result.getData().toString(),HistoryItem.class);
-        LogUtils.debug(list.toString());
+        if (result.getData()!=null) {
+            list = (ArrayList<HistoryItem>) JSONArray.parseArray(result.getData().toString(), HistoryItem.class);
+            list.sort(new Comparator<HistoryItem>() {
+                @Override
+                public int compare(HistoryItem historyItem, HistoryItem t1) {
+                    if (historyItem.getTime().before(t1.getTime())){
+                        return 1;
+                    }
+                    return -1;
+                }
+            });
+            LogUtils.debug(list.toString());
+        }
     }
 
     public static void  setImage(HistoryActivity.HistoryAdapter.ViewHolder holder, int pos,String imageUrl){

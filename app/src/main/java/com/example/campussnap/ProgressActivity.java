@@ -93,7 +93,6 @@ public class ProgressActivity extends AppCompatActivity {
         feedBackId = bundle.getInt("pos");
         LogUtils.debug(feedBackId.toString());
 
-        feedBackId = 20;
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.CHINA);
         Result result = new Result();
         try {

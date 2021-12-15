@@ -1,10 +1,12 @@
 package com.example.campussnap.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,13 @@ import com.example.campussnap.R;
 public class CameraFragment extends Fragment implements View.OnClickListener{
 
     private ImageView lCamera,lHistory;
+    private ImageView photoView;
+    private Button upLoadBtn;
+    private Uri imageURL;
+    private String imageUrl;
+
+
+    private String photoPath;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -86,8 +86,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     e.printStackTrace();
                 }
-                LogUtils.debug("登陆" + result.toString());
-
                 if (result.isSuccess()){
                     AppContext.makeToast("登入成功");
                     if (rememberPwdBox.isChecked()){
@@ -96,6 +94,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+//                    Intent intent = new Intent(LoginActivity.this,ProgressActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putInt("pos",20);
+//                    intent.putExtras(bundle);
+//                    startActivity(intent);
+                    return;
                 }
                 AppContext.makeToast("登入失败");
 

@@ -2,28 +2,28 @@ package com.example.campussnap;
 
 // 登陆后进入的程序界面
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.campussnap.fragment.CameraFragment;
-//import com.example.campussnap.fragment.HomeFragment;
 import com.example.campussnap.fragment.HomeFragment;
 import com.example.campussnap.fragment.NewsFragment;
-import com.example.campussnap.fragment.UserFragment;
 
 import java.util.ArrayList;
+
+//import com.example.campussnap.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     ViewPager2 viewPager;
 
-    private LinearLayout llNews, llHome, llCamera, llUser;
-    private ImageView ivNews, ivHome, ivCamera, ivUser, ivCurrent;      //ivCurrent用来存储当前选中标签
+    private LinearLayout llNews, llHome, llCamera;
+    private ImageView ivNews, ivHome, ivCamera, ivCurrent;      //ivCurrent用来存储当前选中标签
 
 
     @Override
@@ -42,13 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         llHome.setOnClickListener(this);
         llCamera = findViewById(R.id.camera_tab);
         llCamera.setOnClickListener(this);
-        llUser = findViewById(R.id.user_tab);
-        llUser.setOnClickListener(this);
         ivNews = findViewById(R.id.news_tab_img);
         ivHome = findViewById(R.id.home_tab_img);
         ivCamera = findViewById(R.id.camera_tab_img);
-        ivUser = findViewById(R.id.user_tab_img);
-
         ivNews.setSelected(true);       //默认新闻标签被选中
         ivCurrent = ivNews;
     };
@@ -57,9 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager = findViewById(R.id.viewpager);
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new NewsFragment());
-        fragments.add(new HomeFragment());
         fragments.add(new CameraFragment());
-        fragments.add(new UserFragment());
+        fragments.add(new HomeFragment());
         MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(pagerAdapter);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -92,24 +87,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ivNews.setSelected(true);
                 ivCurrent = ivNews;
                 break;
-            case R.id.home_tab:
+            case R.id.camera_tab:
                 viewPager.setCurrentItem(1);
             case 1:
-                ivHome.setSelected(true);
-                ivCurrent = ivHome;
-                break;
-            case R.id.camera_tab:
-                viewPager.setCurrentItem(2);
-            case 2:
                 ivCamera.setSelected(true);
                 ivCurrent = ivCamera;
                 break;
-            case R.id.user_tab:
-                viewPager.setCurrentItem(3);
-            case 3:
-                ivUser.setSelected(true);
-                ivCurrent = ivUser;
+            case R.id.home_tab:
+                viewPager.setCurrentItem(2);
+            case 2:
+                ivHome.setSelected(true);
+                ivCurrent = ivHome;
                 break;
+
         }
     }
 

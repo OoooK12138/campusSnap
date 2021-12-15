@@ -4,10 +4,13 @@ import android.app.Application;
 import android.os.StrictMode;
 import android.widget.Toast;
 
+import com.example.campussnap.entity.User;
+
 import java.util.TimeZone;
 
 public class AppContext extends Application {
     private static AppContext instance;
+    private User user;
 
     public static AppContext getInstance(){
         return instance;
@@ -28,5 +31,13 @@ public class AppContext extends Application {
 
     public static void makeToast(String msg){
         Toast.makeText(instance,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public void userLogin(User user){
+        this.user = user;
+    }
+
+    public String getUsername(){
+        return this.user.getUsername();
     }
 }

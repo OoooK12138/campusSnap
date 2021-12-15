@@ -45,18 +45,30 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initView();
 
-        boolean isAuto = AuthUtils.getIsAuto(this);
-
-        if (isAuto){
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
-        }
-
         User userInfo = AuthUtils.getUserInfo(this);
         if (userInfo!=null) {
             etAccount.setText(userInfo.getUsername());
             etPassword.setText(userInfo.getPassword());
+
+            boolean isAuto = AuthUtils.getIsAuto(this);
+
+            if (isAuto){
+                Result result = new Result();
+                try {
+                    result = userLogin(userInfo);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                if (result.isSuccess()) {
+                    AppContext.getInstance().userLogin(userInfo);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                AppContext.makeToast("登入失败");
+            }
         }
+
     }
 
     private void initView(){
@@ -78,24 +90,29 @@ public class LoginActivity extends AppCompatActivity {
 
                 Result result = new Result();
 
-
+                User user = new User(etAccount.getText().toString(),etPassword.getText().toString());
 
                 try {
-                    result = HttpUtils.GetRequest("/user/login?" + "account=" + URLEncoder.encode(etAccount.getText().toString()) + "&password=" + URLEncoder.encode(etPassword.getText().toString()));
+                    result = userLogin(user);
                 }catch (Exception e){
 
                     e.printStackTrace();
                 }
-                LogUtils.debug("登陆" + result.toString());
-
                 if (result.isSuccess()){
                     AppContext.makeToast("登入成功");
+                    AppContext.getInstance().userLogin(user);
                     if (rememberPwdBox.isChecked()){
                         AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
                     }
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+//                    Intent intent = new Intent(LoginActivity.this,ProgressActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putInt("pos",20);
+//                    intent.putExtras(bundle);
+//                    startActivity(intent);
+                    return;
                 }
                 AppContext.makeToast("登入失败");
 
@@ -156,6 +173,12 @@ public class LoginActivity extends AppCompatActivity {
         boolean isRemember = AuthUtils.getIsRemember(this);
         rememberPwdBox.setText("记住密码");
         rememberPwdBox.setChecked(isRemember);
+
+    }
+
+    public Result userLogin(User user) throws Exception{
+
+        return HttpUtils.GetRequest("/user/login?" + "account=" + URLEncoder.encode(user.getUsername()) + "&password=" + URLEncoder.encode(user.getPassword()));
 
     }
 }

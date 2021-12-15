@@ -76,36 +76,10 @@ public class NewsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-            LogUtils.debug(String.valueOf(position));
             holder.title.setText(newsBeanList.get(position).getTitle());
             holder.content.setText(newsBeanList.get(position).getDesc());
             holder.date.setText(dateFormat.format(newsBeanList.get(position).getPublishTime()));
             setImage(holder,position);
-//            try {
-//                URL url = new URL(newsBeanList.get(position).getImageUrl());
-//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//                //使用GET方法访问网络
-//                connection.setRequestMethod("GET");
-//                //超时时间为10秒
-//                connection.setConnectTimeout(5000);
-//
-//                int code = connection.getResponseCode();
-//                if (code == 200) {
-//                    InputStream inputStream = connection.getInputStream();
-//                    //使用工厂把网络的输入流生产Bitmap
-//                    BitmapFactory.Options options=new BitmapFactory.Options();
-//                    options.inSampleSize = 10;
-//                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream,null,options);
-//                    holder.imgUrl.setImageBitmap(bitmap);
-//                    inputStream.close();
-//                }else {
-//                    throw new RuntimeException("获取失败");
-//                }
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-
-//            Glide.with(context).load(item.getImgUrl()).into(holder.imgUrl);
         }
 
         @Override
@@ -125,6 +99,7 @@ public class NewsFragment extends Fragment {
                 content = itemView.findViewById(R.id.news_item_content);
                 date = itemView.findViewById(R.id.news_item_date);
                 imgUrl = itemView.findViewById(R.id.news_item_imgUrl);
+
             }
         }
     }

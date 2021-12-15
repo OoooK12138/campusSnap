@@ -2,6 +2,8 @@ package com.example.campussnap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +20,22 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.example.campussnap.bean.HistoryItem;
+import com.example.campussnap.common.AppContext;
+import com.example.campussnap.common.Result;
+import com.example.campussnap.fragment.NewsFragment;
+import com.example.campussnap.utils.HttpUtils;
+import com.example.campussnap.utils.LogUtils;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -60,7 +75,7 @@ public class HistoryActivity extends AppCompatActivity {
 //                    System.out.println("进度");
                     Intent intent= new Intent(HistoryActivity.this,ProgressActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("position", String.valueOf(this.position));
+                    bundle.putInt("pos", list.get(position).getId());
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -68,7 +83,7 @@ public class HistoryActivity extends AppCompatActivity {
 //                   System.out.println("评价");
                     Intent intent1 = new Intent(HistoryActivity.this,EvaluateActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("position", String.valueOf(this.position));
+                    bundle.putString("pos", String.valueOf(this.position));
                     intent1.putExtras(bundle);
                     startActivity(intent1);
                 }
@@ -82,6 +97,7 @@ public class HistoryActivity extends AppCompatActivity {
         private Context context;
         private ArrayList<HistoryItem> list = new ArrayList<>();
         private ButtonInterface buttonInterface;
+        private DateFormat format = DateFormat.getDateInstance(DateFormat.LONG, Locale.CHINA);
 
         public HistoryAdapter(Context context, ArrayList<HistoryItem> list) {
             this.context = context;
@@ -114,12 +130,16 @@ public class HistoryActivity extends AppCompatActivity {
         /**
          * 绑定数据
          */
-        public void onBindViewHolder(@NonNull HistoryAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
             HistoryItem item = list.get(position);
+            holder.category.setText(item.getCategory());
+            holder.process.setText(item.getProcess());
             holder.title.setText(item.getTitle());
-            holder.content.setText(item.getContent());
-            holder.date.setText(item.getDate());
-            Glide.with(context).load(item.getImgUrl()).into(holder.imgUrl);
+            holder.content.setText(item.getDesc());
+            holder.date.setText(format.format(list.get(position).getTime()));
+            if (list.get(position).getImageUrl()!=null) {
+                setImage(holder, position, list.get(position).getImageUrl());
+            }
 
             /**
              * 进程点击事件 flag=1
@@ -173,12 +193,52 @@ public class HistoryActivity extends AppCompatActivity {
         }
 
     }
+
+
+
     private void initList() {
-        HistoryItem item = new HistoryItem("我是标题","我是内容","2021-10-27",R.drawable.fzu5,1,"安全隐患","处理完成");
-        for(int i=0;i<6;i++){
-            list.add(item);
+        Result result = new Result();
+        try {
+            result = HttpUtils.GetRequest("/feedback/get?" + "account=" + URLEncoder.encode(AppContext.getInstance().getUsername()));
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        LogUtils.debug(result.toString());
+
+        list = (ArrayList<HistoryItem>) JSONArray.parseArray(result.getData().toString(),HistoryItem.class);
+        LogUtils.debug(list.toString());
     }
 
+    public static void  setImage(HistoryActivity.HistoryAdapter.ViewHolder holder, int pos,String imageUrl){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(imageUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    //使用GET方法访问网络
+                    connection.setRequestMethod("GET");
+                    //超时时间为10秒
+                    connection.setConnectTimeout(5000);
 
+                    int code = connection.getResponseCode();
+                    if (code == 200) {
+                        InputStream inputStream = connection.getInputStream();
+                        //使用工厂把网络的输入流生产Bitmap
+                        BitmapFactory.Options options=new BitmapFactory.Options();
+                        options.inSampleSize = 4;
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream,null,options);
+                        holder.imgUrl.setImageBitmap(bitmap);
+                        inputStream.close();
+                    }else {
+                        throw new RuntimeException("获取失败");
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+    }
 }

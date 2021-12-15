@@ -62,23 +62,39 @@ public class HttpUtils {
         }
     }
 
-    public static Result PostRequest(String method, List<Param> params) throws Exception {
+    public static Result PostRequest(String method, String json) throws Exception {
         URL url = new URL(URL + method);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy((policy));
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("POST");
-        connection.setConnectTimeout(TIMEOUT_IN_MILLIONS);
-        int responseCode = connection.getResponseCode();
-        String data = getParams(params);
-        LogUtils.debug(data);
-        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        connection.setRequestProperty("Content-Length", String.valueOf(data.length()));
-        connection.setDoOutput(true);
-        OutputStream outputStream = connection.getOutputStream();
-        outputStream.write(data.getBytes());
+
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setDoInput(true);
+        conn.setUseCaches(false);
+        conn.setRequestProperty("Connection", "Keep-Alive");
+        conn.setRequestProperty("Charset", "UTF-8");
+        // 设置文件类型:
+        conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+        // 设置接收类型否则返回415错误
+        //conn.setRequestProperty("accept","*/*")此处为暴力方法设置接受所有类型，以此来防范返回415;
+        conn.setRequestProperty("accept", "application/json");
+
+        if (json!=null){
+            byte[] writeBytes = json.getBytes();
+
+            conn.setRequestProperty("Content-Length", String.valueOf(writeBytes.length));
+            OutputStream outputStream = conn.getOutputStream();
+            outputStream.write(json.getBytes());
+            outputStream.flush();
+            outputStream.close();
+            Log.d("hlhupload", "doJsonPost: conn" + conn.getResponseCode());
+        }
+
+        int responseCode = conn.getResponseCode();
         if (responseCode == 200) {
-            InputStream inputStream = connection.getInputStream();
+            InputStream inputStream = conn.getInputStream();
 
             String input;
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -86,7 +102,6 @@ public class HttpUtils {
             while ((input = reader.readLine()) != null) {
                 stringBuffer.append(input);
             }
-            LogUtils.debug(stringBuffer.toString());
             return JSONObject.parseObject(stringBuffer.toString(),Result.class);
         }else {
             throw new RuntimeException("请求错误" + "状态码:" + responseCode);
@@ -95,7 +110,7 @@ public class HttpUtils {
 
     public static Result uploadFile(File file, String RequestURL) throws Exception{
         String CONTENT_TYPE = "multipart/form-data";
-        URL url = new URL(RequestURL);
+        URL url = new URL(URL + RequestURL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(TIMEOUT_IN_MILLIONS);
         conn.setConnectTimeout(TIMEOUT_IN_MILLIONS);

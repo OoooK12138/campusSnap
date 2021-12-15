@@ -77,14 +77,10 @@
         </activity>
         <activity
             android:name=".EvaluateActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/title_bar_style">
         </activity>
 
-<!--        <activity>-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/title_bar_style"/>-->
-<!--            android:exported="true">-->
-<!--        </activity>-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

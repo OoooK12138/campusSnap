@@ -11,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.campussnap.bean.CommentBean;
+import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
+import com.example.campussnap.utils.HttpUtils;
+import com.example.campussnap.utils.LogUtils;
 
 //发表评价界面
 public class EvaluateActivity extends Activity implements View.OnClickListener{
@@ -79,10 +83,15 @@ public class EvaluateActivity extends Activity implements View.OnClickListener{
 
         Result result = new Result();
         try {
-            // TODO: 2021/12/15 网络请求 
-           // result = HttpUtils.PostRequest("/feedback/evaluate" );
+            result = HttpUtils.PostRequest("/feedback/evaluate" , JSONObject.toJSONString(postData));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        LogUtils.debug(result.toString());
+        if (result.isSuccess()){
+            AppContext.makeToast("评价成功");
+        }else {
+            AppContext.makeToast("评价失败");
         }
     }
 

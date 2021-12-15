@@ -3,6 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="16dp"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
     android:id="@+id/history_item_rl">
 
     <ImageView
@@ -21,7 +23,7 @@
             android:id="@+id/history_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="鏍囬"
+            android:text="标题"
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="20dp" />
@@ -32,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/history_item_title"
             android:layout_marginTop="10dp"
-            android:text="鍐呭"
+            android:text="内容"
             android:textColor="#000000"
             android:textSize="15dp" />
 
@@ -42,27 +44,48 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/history_item_content"
             android:layout_marginTop="10dp"
-            android:text="鏃ユ湡"
+            android:text="时间"
             android:textColor="#000000"
             android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/history_item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/history_item_date"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:text="信息种类"
+            />
+
+        <TextView
+            android:id="@+id/history_item_process"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="状态"
+            android:layout_below="@+id/history_item_category"
+            android:layout_marginTop="10dp"
+            android:textColor="#3F51B5"
+            android:textSize="15dp"
+            />
 
         <Button
             android:id="@+id/history_item_evaluate"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_below="@+id/history_item_date"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:layout_marginRight="40dp"
             android:layout_toRightOf="@id/history_item_progress"
-            android:text="鎴戣璇勪环" />
+            android:text="我要评价" />
 
         <Button
             android:id="@+id/history_item_progress"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_below="@+id/history_item_date"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:layout_marginRight="20dp"
-            android:text="鏌ョ湅杩涘害" />
+            android:text="查看进度" />
     </RelativeLayout>
 </RelativeLayout>

@@ -1,12 +1,5 @@
 package com.example.campussnap;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,16 +11,22 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.campussnap.config.ListItem;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.campussnap.bean.HistoryItem;
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
 
     private RecyclerView hRecyclerView;
     private HistoryAdapter historyAdapter;
-    private ArrayList<ListItem> list = new ArrayList<>();
+    private ArrayList<HistoryItem> list = new ArrayList<>();
 
 
     @Override
@@ -81,10 +80,10 @@ public class HistoryActivity extends AppCompatActivity {
     static class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
         private Context context;
-        private ArrayList<ListItem> list = new ArrayList<>();
+        private ArrayList<HistoryItem> list = new ArrayList<>();
         private ButtonInterface buttonInterface;
 
-        public HistoryAdapter(Context context, ArrayList<ListItem> list) {
+        public HistoryAdapter(Context context, ArrayList<HistoryItem> list) {
             this.context = context;
             this.list = list;
         }
@@ -116,7 +115,7 @@ public class HistoryActivity extends AppCompatActivity {
          * 绑定数据
          */
         public void onBindViewHolder(@NonNull HistoryAdapter.ViewHolder holder, int position) {
-            ListItem item = list.get(position);
+            HistoryItem item = list.get(position);
             holder.title.setText(item.getTitle());
             holder.content.setText(item.getContent());
             holder.date.setText(item.getDate());
@@ -154,23 +153,28 @@ public class HistoryActivity extends AppCompatActivity {
             private ImageView imgUrl;
             private Button progress;
             private Button evaluate;
+            private TextView category;
+            private TextView process;
             RelativeLayout itemLayout;
 
             public ViewHolder(View itemView){
                 super(itemView);
                 itemLayout = itemView.findViewById(R.id.history_item_rl);
+                category=itemView.findViewById(R.id.history_item_category);
+                process=itemView.findViewById(R.id.history_item_process);
                 title = itemView.findViewById(R.id.history_item_title);
                 content = itemView.findViewById(R.id.history_item_content);
                 date = itemView.findViewById(R.id.history_item_date);
                 progress=itemView.findViewById(R.id.history_item_progress);
                 evaluate=itemView.findViewById(R.id.history_item_evaluate);
                 imgUrl = itemView.findViewById(R.id.history_item_imgUrl);
+
             }
         }
 
     }
     private void initList() {
-        ListItem item = new ListItem("我是标题","我是内容","2021-10-27",R.drawable.fzu4);
+        HistoryItem item = new HistoryItem("我是标题","我是内容","2021-10-27",R.drawable.fzu5,1,"安全隐患","处理完成");
         for(int i=0;i<6;i++){
             list.add(item);
         }

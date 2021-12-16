@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,9 @@ public class ProgressActivity extends Activity {
     private Integer feedBackId ;
     private DateFormat dateFormat;
     private RecyclerView recyclerView;
+
+    private ImageView back_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,8 @@ public class ProgressActivity extends Activity {
         /**
          * 璺宠浆鍙傛暟浼犲叆
          */
+
+
         init();
     }
 
@@ -89,6 +95,7 @@ public class ProgressActivity extends Activity {
         ProgressAdapter progressAdapter = new ProgressAdapter();
         recyclerView.setLayoutManager (new LinearLayoutManager(AppContext.getInstance(),LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter (progressAdapter);
+
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         feedBackId = bundle.getInt("pos");
@@ -106,6 +113,15 @@ public class ProgressActivity extends Activity {
             feedBackBeanList = JSONArray.parseArray(result.getData().toString(),FeedBackBean.class);
             LogUtils.debug(feedBackBeanList.toString());
         }
+
+        back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
 }

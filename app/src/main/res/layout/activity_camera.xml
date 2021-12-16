@@ -8,38 +8,52 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/white"
         android:orientation="horizontal">
-        <Button
+
+        <ImageView
             android:id="@+id/turn_back"
-            android:layout_width="40dp"
-            android:layout_height="35dp"
-            android:layout_gravity="left"
-            android:background="@drawable/ic_baseline_arrow_back_ios_24" />
-        <TextView android:layout_width="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text=""
-            android:textColor="#ffffff"
-            android:textSize="36dp"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/up_load"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_gravity="right"
-            android:text="上传"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_upload"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/back"
+            android:background="@color/white"
             />
 
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="拍照上传"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:gravity="center"/>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:gravity="right" >
 
+            <Button
+                android:id="@+id/up_load"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_shape"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:text="上传"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout >
 
 
     <EditText

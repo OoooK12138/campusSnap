@@ -42,7 +42,7 @@ public class CameraActivity extends Activity {
     private RadioGroup category;
     private RadioGroup degree;
 
-    private Button returnBtn;
+    private ImageView returnBtn;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {

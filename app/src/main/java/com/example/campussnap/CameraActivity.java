@@ -31,7 +31,6 @@ import java.util.Date;
 
 public class CameraActivity extends Activity {
 
-
     private ImageView photoView;
     private Button upLoadBtn;
     private Uri imageURL;
@@ -43,7 +42,7 @@ public class CameraActivity extends Activity {
     private RadioGroup category;
     private RadioGroup degree;
 
-
+    private Button returnBtn;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +61,7 @@ public class CameraActivity extends Activity {
         ed_problem = findViewById(R.id.problem_text);
         category = findViewById(R.id.problem_description);
         degree = findViewById(R.id.importance_group);
+        returnBtn=findViewById(R.id.turn_back);
 
 
         photoView.setOnClickListener(new View.OnClickListener() {
@@ -153,9 +153,14 @@ public class CameraActivity extends Activity {
 
             }
         });
+
+        returnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
-
-
 
 
 

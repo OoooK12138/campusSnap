@@ -31,7 +31,7 @@ import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
 
-
+    private returnBtn;
     private ImageView photoView;
     private Button upLoadBtn;
     private Uri imageURL;
@@ -60,6 +60,7 @@ public class CameraActivity extends AppCompatActivity {
         ed_problem = findViewById(R.id.problem_text);
         category = findViewById(R.id.problem_description);
         degree = findViewById(R.id.importance_group);
+        returnBtn=findViewById(R.id.turn_back);
 
 
         photoView.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +155,12 @@ public class CameraActivity extends AppCompatActivity {
     }
 
 
-
+    returnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
 

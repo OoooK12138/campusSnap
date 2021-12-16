@@ -1,6 +1,7 @@
 package com.example.campussnap;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,7 +16,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSONObject;
@@ -29,7 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Date;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends Activity {
 
 
     private ImageView photoView;
@@ -48,12 +48,14 @@ public class CameraActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        setContentView(R.layout.activity_camera);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.main_title_bar);
         init();
     }
 
     public void init(){
-        setContentView(R.layout.activity_camera);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.evaluate_title_bar);
+
         upLoadBtn = findViewById(R.id.up_load);
         photoView = findViewById(R.id.photo_item);
         ed_title = findViewById(R.id.title_text);

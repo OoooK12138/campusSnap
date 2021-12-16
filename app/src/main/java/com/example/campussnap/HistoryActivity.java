@@ -134,7 +134,7 @@ public class HistoryActivity extends Activity {
          */
         public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
             HistoryItem item = list.get(position);
-            holder.category.setText(item.getCategory());
+            holder.category.setText("信息种类：" + item.getCategory());
             holder.process.setText(item.getProcess());
             holder.title.setText(item.getTitle());
             holder.content.setText(item.getDesc());

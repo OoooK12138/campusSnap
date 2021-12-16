@@ -1,22 +1,22 @@
 package com.example.campussnap;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.campussnap.bean.FeedBackBean;
 import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
-import com.example.campussnap.fragment.NewsFragment;
 import com.example.campussnap.utils.HttpUtils;
 import com.example.campussnap.utils.LogUtils;
 
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ProgressActivity extends AppCompatActivity {
+public class ProgressActivity extends Activity {
 
     private List<FeedBackBean> feedBackBeanList = new ArrayList<>();
     private Integer feedBackId ;
@@ -35,8 +35,9 @@ public class ProgressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_progress);
-
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.progress_title_bar);
         /**
          * 璺宠浆鍙傛暟浼犲叆
          */

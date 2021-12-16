@@ -38,7 +38,8 @@
             android:exported="true" />
         <activity
             android:name=".CameraActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/empty_bar_style"/>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -70,7 +71,8 @@
 
         <activity
             android:name=".ProgressActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/title_bar_style">
         </activity>
 
         <activity

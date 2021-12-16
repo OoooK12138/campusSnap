@@ -4,11 +4,12 @@ package com.example.campussnap;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.campussnap.fragment.CameraFragment;
@@ -19,17 +20,21 @@ import java.util.ArrayList;
 
 //import com.example.campussnap.fragment.HomeFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends FragmentActivity implements View.OnClickListener{
     ViewPager2 viewPager;
 
     private LinearLayout llNews, llHome, llCamera;
     private ImageView ivNews, ivHome, ivCamera, ivCurrent;      //ivCurrent用来存储当前选中标签
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.main_title_bar);
+
         initPager();
         initTabView();
     }

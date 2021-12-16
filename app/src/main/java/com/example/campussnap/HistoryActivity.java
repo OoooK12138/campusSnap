@@ -1,5 +1,6 @@
 package com.example.campussnap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,24 +9,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
-import com.bumptech.glide.Glide;
 import com.example.campussnap.bean.HistoryItem;
 import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
-import com.example.campussnap.fragment.NewsFragment;
 import com.example.campussnap.utils.HttpUtils;
 import com.example.campussnap.utils.LogUtils;
 
@@ -38,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends Activity {
 
     private RecyclerView hRecyclerView;
     private HistoryAdapter historyAdapter;
@@ -48,8 +47,10 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         initList();
         setContentView(R.layout.activity_history);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.main_title_bar);
         hRecyclerView=findViewById(R.id.rv_history);
 
         historyAdapter = new HistoryAdapter(HistoryActivity.this, list);

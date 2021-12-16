@@ -5,6 +5,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_color"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:text="校园新闻"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
-        android:background="#FF8F03"
+        android:background="@color/main_color"
         android:gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lv_news"

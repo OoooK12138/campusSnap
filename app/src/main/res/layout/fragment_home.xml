@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    android:background="@drawable/feedback_background">
-    android:layout_height="match_parent">
-    android:background="@drawable/feedback_background">
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/camera"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/take_pictures"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="40dp"/>
+        android:id="@+id/home_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home_bg"
+        android:layout_gravity="top"
+        android:adjustViewBounds="true" />
 
-    <ImageView
-        android:id="@+id/history"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/history_records"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="250dp"/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/home_bg"
+      android:paddingLeft="60dp"
+      android:paddingRight="60dp"
+      android:layout_marginTop="40dp">
+
+      <ImageView
+          android:id="@+id/camera"
+          android:layout_width="100dp"
+          android:layout_height="100dp"
+          android:background="@drawable/take_pictures"
+          />
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="right">
+         <ImageView
+             android:id="@+id/history"
+             android:layout_width="100dp"
+             android:layout_height="100dp"
+             android:background="@drawable/history_records"
+             />
+     </LinearLayout>
+
+  </LinearLayout>
 
 </RelativeLayout>

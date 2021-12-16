@@ -31,7 +31,6 @@ import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
 
-    private returnBtn;
     private ImageView photoView;
     private Button upLoadBtn;
     private Uri imageURL;
@@ -43,7 +42,7 @@ public class CameraActivity extends AppCompatActivity {
     private RadioGroup category;
     private RadioGroup degree;
 
-
+    private Button returnBtn;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,15 +151,15 @@ public class CameraActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-
-    returnBtn.setOnClickListener(new View.OnClickListener() {
+        returnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+    }
+
 
 
 

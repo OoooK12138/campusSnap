@@ -38,7 +38,8 @@
             android:exported="true" />
         <activity
             android:name=".CameraActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

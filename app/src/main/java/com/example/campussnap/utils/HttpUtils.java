@@ -35,8 +35,6 @@ public class HttpUtils {
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @SuppressLint("NewApi")
 
-
-
     public static Result GetRequest(String method) throws Exception {
         URL url = new URL(URL + method);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -66,8 +64,6 @@ public class HttpUtils {
         URL url = new URL(URL + method);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy((policy));
-
-
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -80,7 +76,6 @@ public class HttpUtils {
         // 设置接收类型否则返回415错误
         //conn.setRequestProperty("accept","*/*")此处为暴力方法设置接受所有类型，以此来防范返回415;
         conn.setRequestProperty("accept", "application/json");
-
         if (json!=null){
             byte[] writeBytes = json.getBytes();
 
@@ -91,7 +86,6 @@ public class HttpUtils {
             outputStream.close();
             Log.d("hlhupload", "doJsonPost: conn" + conn.getResponseCode());
         }
-
         int responseCode = conn.getResponseCode();
         if (responseCode == 200) {
             InputStream inputStream = conn.getInputStream();
@@ -130,8 +124,6 @@ public class HttpUtils {
             sb.append(PREFIX);
             sb.append(BOUNDARY);
             sb.append(LINE_END);
-
-
             sb.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + file.getName() + "\"" + LINE_END);
             sb.append("Content-Type: application/octet-stream; charset=" + CHARSET + LINE_END);
             sb.append(LINE_END);

@@ -1,6 +1,8 @@
 package com.example.campussnap;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
         initView();
-
+        requestPermissions();
         User userInfo = AuthUtils.getUserInfo(this);
         if (userInfo!=null) {
             etAccount.setText(userInfo.getUsername());
@@ -147,5 +149,16 @@ public class LoginActivity extends AppCompatActivity {
 
         return HttpUtils.GetRequest("/user/login?" + "account=" + URLEncoder.encode(user.getUsername()) + "&password=" + URLEncoder.encode(user.getPassword()));
 
+    }
+
+    private void requestPermissions() {
+        int write=checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int read=checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+        int camera=checkSelfPermission(Manifest.permission.CAMERA);
+        if (write!= PackageManager.PERMISSION_GRANTED||camera!=PackageManager.PERMISSION_GRANTED||
+                read!=PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA},300);
+        }
     }
 }

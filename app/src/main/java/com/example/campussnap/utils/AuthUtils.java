@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.campussnap.bean.UserBean;
 import com.example.campussnap.entity.User;
 
 public class AuthUtils {
@@ -39,6 +40,7 @@ public class AuthUtils {
     public static void setAccount(Context context,String username,String password){
         SharedPreferences sharedPreferences = context.getSharedPreferences(key,Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
+        UserBean.setUsername(username);
         edit.putString("username",username);
         edit.putString("password",password);
         edit.commit();

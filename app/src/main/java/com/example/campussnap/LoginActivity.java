@@ -1,11 +1,7 @@
 package com.example.campussnap;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,22 +11,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.fastjson.JSONObject;
-import com.example.campussnap.bean.FeedBackBean;
-import com.example.campussnap.bean.HistoryItem;
+import com.example.campussnap.bean.UserBean;
 import com.example.campussnap.common.AppContext;
 import com.example.campussnap.common.Result;
 import com.example.campussnap.entity.User;
 import com.example.campussnap.utils.AuthUtils;
 import com.example.campussnap.utils.HttpUtils;
-import com.example.campussnap.utils.LogUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Field;
 import java.net.URLEncoder;
-import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etAccount;
@@ -107,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (result.isSuccess()){
                     AppContext.makeToast("登入成功");
+                    UserBean.setUsername(etAccount.getText().toString());
                     AppContext.getInstance().userLogin(user);
                     if (rememberPwdBox.isChecked()){
                         AuthUtils.setAccount(LoginActivity.this,etAccount.getText().toString(),etPassword.getText().toString());
